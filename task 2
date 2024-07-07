@@ -1,0 +1,69 @@
+class StudentGradeTracker:
+    def __init__(self):
+        self.students = {}
+
+    def add_student(self, name):
+        if name in self.students:
+            print(f"{name} is already in the system.")
+        else:
+            self.students[name] = []
+            print(f"{name} has been added to the system.")
+
+    def update_grade(self, name, grade):
+        if name in self.students:
+            self.students[name].append(grade)
+            print(f"Grade {grade} has been added for {name}.")
+        else:
+            print(f"{name} is not in the system.")
+
+    def display_grades(self, name):
+        if name in self.students:
+            print(f"Grades for {name}: {self.students[name]}")
+        else:
+            print(f"{name} is not in the system.")
+
+    def calculate_average(self, name):
+        if name in self.students:
+            grades = self.students[name]
+            if grades:
+                average = sum(grades) / len(grades)
+                print(f"Average grade for {name}: {average:.2f}")
+            else:
+                print(f"No grades available for {name}.")
+        else:
+            print(f"{name} is not in the system.")
+
+def main():
+    tracker = StudentGradeTracker()
+
+    while True:
+        print("\nStudent Grade Tracker")
+        print("1. Add Student")
+        print("2. Update Grade")
+        print("3. Display Grades")
+        print("4. Calculate Average Grade")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            name = input("Enter student name: ")
+            tracker.add_student(name)
+        elif choice == '2':
+            name = input("Enter student name: ")
+            grade = float(input("Enter grade: "))
+            tracker.update_grade(name, grade)
+        elif choice == '3':
+            name = input("Enter student name: ")
+            tracker.display_grades(name)
+        elif choice == '4':
+            name = input("Enter student name: ")
+            tracker.calculate_average(name)
+        elif choice == '5':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
